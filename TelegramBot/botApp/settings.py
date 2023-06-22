@@ -1,0 +1,5 @@
+API_KEY = '5922633185:AAEeh-GXExphv37NSUp7iHem8aXQJ94ibBk'
+
+PROGRAM_API_URL_ALL ='http://127.0.0.1:8000/program'
+
+
