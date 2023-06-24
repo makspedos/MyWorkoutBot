@@ -1,10 +1,6 @@
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
 
-class STATES_INFORMATION(StatesGroup):
-    GET_INFO = State()
-
-
 class AuthState(StatesGroup):
     AUTH_ENTER_EMAIL = State()
     AUTH_ENTER_NAME = State()
@@ -16,3 +12,4 @@ class AuthState(StatesGroup):
     USER_CHOOSE_MUSCLE = State()
     USER_SELECT_EXERCISE = State()
     USER_ENTER_LOAD = State()
+    USER_DELETE_WORKOUT = State()

@@ -191,6 +191,7 @@ class Load(models.Model):
     count = models.IntegerField(null=True, blank=True)
     exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE, default=None)
     workout_id = models.ForeignKey(Workout,on_delete=models.CASCADE, default=None)
+    program_id = models.ForeignKey(Program,on_delete=models.CASCADE, default=None)
 
     def __str__(self):
         return str(self.weight) + ' кг на ' + str(self.count)

@@ -1,18 +1,18 @@
 import requests
+from .settings import url_start
 
-
-def create_user(email, name, password, program_id):
-    url = 'http://127.0.0.1:8000/program/user/'
+def create_user(email, name, password):
+    url = f'{url_start}user/'
     data = {
-        "name": email,
-        "email": name,
+        "name": name,
+        "email": email,
         "password": password,
     }
     response = requests.post(url, json=data)
 
 
 def create_program(name,user_id):
-    url = 'http://127.0.0.1:8000/program/'
+    url = f'{url_start}program/'
     data = {
         "name": name,
         "user":user_id
@@ -21,7 +21,7 @@ def create_program(name,user_id):
 
 
 def create_workout(name,program_id):
-    url = 'http://127.0.0.1:8000/program/workout/'
+    url = f'{url_start}workout/'
     data = {
         "name": name,
         "programs":program_id
@@ -29,19 +29,20 @@ def create_workout(name,program_id):
     response = requests.post(url, json=data)
 
 
-def create_load(weight, count, exercise_id, workout_id):
-    url = 'http://127.0.0.1:8000/program/load/'
+def create_load(weight, count, exercise_id, workout_id, program_id):
+    url = f'{url_start}load/'
     data = {
         "weight": weight,
         "count":count,
         "exercise":exercise_id,
         "workout_id":workout_id,
+        "program_id":program_id,
     }
     response = requests.post(url, json=data)
 
 
 def update_exercise(exercise_id, workout_id):
-    url = f'http://127.0.0.1:8000/program/exercise/{exercise_id}/'
+    url = f'{url_start}exercise/{exercise_id}/'
     data = {
         "workout":workout_id,
     }
@@ -49,5 +50,22 @@ def update_exercise(exercise_id, workout_id):
         'Content-Type': 'application/json'
     }
     response = requests.patch(url, json=data, headers=headers)
-    print(response)
     return response
+
+
+def delete_workout(workout_name, program_id):
+    url = f'{url_start}workout/program/{program_id}/{workout_name}/'
+    response = requests.delete(url)
+
+
+def update_exercise(exercise_id, workout_id):
+    url = f'{url_start}exercise/{exercise_id}/'
+    data = {
+        "workout":workout_id,
+    }
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    response = requests.patch(url, json=data, headers=headers)
+    return response
+
