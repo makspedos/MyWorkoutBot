@@ -3,8 +3,6 @@ from rest_framework.response import Response
 from ..models import *
 from ..serializer import *
 
-
-
 class MuscleView(APIView):
     def get(self, request, muscle_id=None, format=None):
         if muscle_id is None:

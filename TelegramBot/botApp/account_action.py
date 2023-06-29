@@ -7,6 +7,7 @@ from .states import *
 from .fetch import *
 from .settings import urls
 
+
 @dp.message_handler(commands=['account'], state=AuthState.USER_ACCOUNT)
 async def account(message: types.Message, state: FSMContext):
     data = await state.get_data()
@@ -72,10 +73,8 @@ async def program_workouts(callback_query: types.CallbackQuery, state: FSMContex
 @dp.callback_query_handler(lambda query: query.data.startswith('progress_'), state=AuthState.USER_ACCOUNT)
 async def exercise_progress(callback_query: types.CallbackQuery, state: FSMContext):
     program_id = callback_query.data.split('_')[1]
-
-    str_return = ''
-
     exercises = await get_simple_data(urls['exercise_by_program_id'], program_id)
+    str_return = ''
 
     for exercise in exercises:
         str_return += f"\n\n{exercise['name']}"

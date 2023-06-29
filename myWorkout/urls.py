@@ -4,8 +4,8 @@ from .view import exercise_view, load_view, muscle_view, program_view, user_view
 
 
 urlpatterns = [
-    path('program/', program_view.ProgramView.as_view()),
-    path('program/user/<int:user_id>/', program_view.ProgramView.as_view()),
+    path('program/', program_view.ProgramView.as_view(), name='programs'),
+    path('program/user/<int:user_id>/', program_view.ProgramView.as_view(), name='programs_by_user'),
 
     path('workout/program/<int:program_id>/', workout_view.WorkoutView.as_view()),
     path('workout/', workout_view.WorkoutView.as_view()),
